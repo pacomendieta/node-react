@@ -10,6 +10,7 @@ const app = express()
 
 app.use ( cors())              // header para peticiones ajax
 app.use(express.json())        // json en body
+app.use(express.urlencoded({extended:true}))
 app.use('/blogs', blogRoutes)  // Root de los endpoints de de blogs
 
 //comprobar conexion a bd MySQL
