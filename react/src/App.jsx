@@ -4,6 +4,9 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import ShowBlogs from './blog/ShowBlogs'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import CreateBlog from './blog/createBlog'
+import EditBlog from './blog/EditBlog'
+
 
 function App() {
 
@@ -17,9 +20,10 @@ function App() {
         <BrowserRouter>
         <Routes>
            <Route path='/'     element={<ShowBlogs/>}>   </Route>
-           <Route path='/edit' element={<>editando...</>}></Route>
-           <Route path='/create' element={<>añadiendo...</>}></Route>
+           <Route path='/edit/:id' element={<EditBlog/>}></Route>
+           <Route path='/create' element={<CreateBlog/>}></Route>
 	         
+
         </Routes>  
         </BrowserRouter>
    

@@ -1,10 +1,13 @@
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse, faBookOpen} from '@fortawesome/free-solid-svg-icons'
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+//import { faHouse, faBookOpen} from '@fortawesome/free-solid-svg-icons'
 //import { library } from '@fortawesome/fontawesome-svg-core'
 //library.add ( faPlus, faCameraRetro, faTv )
+import { FaHeart, FaPlus, FaEdit, FaTrash  } from "react-icons/fa"
+import { FaReact } from "react-icons/fa"
+import { FaBook } from "react-icons/fa"
 
 const ShowBlogs = () =>{
 
@@ -27,11 +30,7 @@ const ShowBlogs = () =>{
 
     return(
         <div className='col'>
-            <FontAwesomeIcon icon={faHouse}></FontAwesomeIcon>
-            <FontAwesomeIcon icon={faBookOpen}></FontAwesomeIcon>
-
-           
-            <Link to="/create" className='btn btn-primary mt-2 mb-2'>Add Blog</Link>
+            <Link to="/create" className='btn btn-primary mt-2 mb-2'><FaPlus /></Link>
             <table className='table'>
                 <thead className='table-primary'>
                     <tr>
@@ -46,8 +45,8 @@ const ShowBlogs = () =>{
                                 <td>{blog.title}</td>
                                 <td>{blog.content}</td>
                                 <td> 
-                                    <Link to= '/edit' className='btn btn-primary' >EDIT</Link>
-                                    <button onClick={ ()=>deleteBlog(blog.id)} className='btn btn-danger'>Delete</button>
+                                    <Link to= {`/edit/${blog.id}`} className='btn btn-primary' ><FaEdit /></Link>
+                                    <button onClick={ ()=>deleteBlog(blog.id)} className='btn btn-danger'><FaTrash/></button>
                                 </td>
                             </tr>
                         ))
