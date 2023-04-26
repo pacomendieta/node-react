@@ -1,10 +1,10 @@
 import express from "express"
 import cors from "cors"
 
-import sequelize from "./database/db.js"
+import sequelize from "./database/dbmysql.js"
 import blogRoutes from './routes/routes.js'
 
-import mongodb from "./database/mongodb.js"
+//import mongodb from "./database/mongodb.js"
 
 const app = express()
 
