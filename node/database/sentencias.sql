@@ -204,7 +204,12 @@ BEGIN
         FOREIGN KEY(user_id) references usuarios(user_id)
     );
     INSERT INTO usuarios_libros (libro_id, user_id) VALUES (libro_id, user_id);
-    SET cantidad = 3;
+    SET cantidad = 0;
+    IF cantidad = 0 OR cantidad = 100 THEN
+        SELECT "Hay un error. ¿Esto sale en consola?" AS mensaje_error;
+    ELSE
+        SET cantidad = cantidad + 1;
+    END IF;
 END
 
     
@@ -221,3 +226,40 @@ WHERE
 
 
 CALL prestamos(1,2)
+
+BEGIN
+    SET @contador=0
+    WHILE @contador < 5 DO 
+        SET @contador = @contador +1
+    END WHILE
+END
+
+
+START TRANSACTION ;
+    -- OPERACIONES
+    IF error THEN
+        ROLLBACK;
+    END IF 
+COMMIT ;
+
+
+
+CREATE PROCEDURE prestamos(user_id INT, libro_id INT, OUT cantidad INT) 
+BEGIN 
+
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        -- codigo a realizar si error
+        ROLLBACK;
+    END
+
+    START TRANSACTION;
+        INSERT INTO usuarios_libros (libro_id, user_id) VALUES (libro_id, user_id);
+        SET cantidad = 0;
+        IF cantidad = 0 OR cantidad = 100 THEN
+            SELECT "Hay un error. ¿Esto sale en consola?" AS mensaje_error;
+        ELSE
+            SET cantidad = cantidad + 1;
+        END IF;
+    COMMIT;
+END
