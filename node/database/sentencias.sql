@@ -263,3 +263,69 @@ BEGIN
         END IF;
     COMMIT;
 END
+
+
+/**  EVENTOS ***/
+DELIMITER //
+
+CREATE EVENT insertion_event
+ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 1 MINUTE
+ON COMPLETION PRESERVE
+...
+DO
+BEGIN
+ INSERT INTO test VALUES ('Evento 1', NOW());
+ INSERT INTO test VALUES ('Evento 2', NOW());
+ INSERT INTO test VALUES ('Evento 3', NOW());
+ 
+END //
+
+DELIMITER ;
+
+CREATE EVENT nombre_evento
+ON SCHEDULE AT 'fecha de ejeución' 
+DO
+CALL store_procedure();
+
+CREATE EVENT insertion_event
+ON SCHEDULE EVERY 1 MINUTE STARTS '2018-07-07 18:30:00'
+DO INSERT INTO test VALUES ('Evento 1', NOW());
+
+
+CREATE EVENT insertion_event
+ON SCHEDULE EVERY 1 MINUTE STARTS '2018-07-07 18:30:00'
+ENDS '2018-07-07 19:00:00'
+DO INSERT INTO test VALUES ('Evento 1', NOW());
+
+ALTER EVENT nombre_evento
+DISABLE;
+
+
+
+CREATE
+    [DEFINER = { user | CURRENT_USER }]
+    EVENT
+    [IF NOT EXISTS]
+    event_name
+    ON SCHEDULE schedule
+    [ON COMPLETION [NOT] PRESERVE]
+    [ENABLE | DISABLE | DISABLE ON SLAVE]
+    [COMMENT 'string']
+    DO event_body;
+
+schedule:
+    AT timestamp [+ INTERVAL interval] ...
+  | EVERY interval
+    [STARTS timestamp [+ INTERVAL interval] ...]
+    [ENDS timestamp [+ INTERVAL interval] ...]
+
+interval:
+    quantity {YEAR | QUARTER | MONTH | DAY | HOUR | MINUTE |
+              WEEK | SECOND | YEAR_MONTH | DAY_HOUR | DAY_MINUTE |
+              DAY_SECOND | HOUR_MINUTE | HOUR_SECOND | MINUTE_SECOND}
+
+
+mysqldump base_de_datos > ruta/archivo_respaldo.sql
+mysqldump --databases db1 db2 db3 > ruta/archivo_respaldo.sql
+mysqldump base_de_datos tabla1 > ruta/archivo_respaldo.sql
+mysqldump base_de_datos tabla1 tabla3 > ruta/archivo_respaldo.sql
