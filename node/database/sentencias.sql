@@ -55,11 +55,11 @@ VALUES
 
 INSERT INTO libros ( autor_id, titulo) 
 VALUES 
-  ( 1, "Libro de autor 1"),
-  ( 1, "Segundo libro de autor 1"),
-  ( 2, "Libro de autor 2"),
-  ( 2, "Segundo libro de autor 2"),
-  ( 1, "Libro de autor 1"),
+  ( 1, "Don Quijote"),
+  ( 1, "Veinte mil leguas"),
+  ( 2, "La vuelta al mundo"),
+  ( 2, "Robinson Crusoe"),
+  ( 1, "Viaje a la luna"),
   ( 1, "Segundo libro de autor 1"),
   ( 2, "Libro de autor 2"),
   ( 2, "Segundo libro de autor 2"),
@@ -329,3 +329,5 @@ mysqldump base_de_datos > ruta/archivo_respaldo.sql
 mysqldump --databases db1 db2 db3 > ruta/archivo_respaldo.sql
 mysqldump base_de_datos tabla1 > ruta/archivo_respaldo.sql
 mysqldump base_de_datos tabla1 tabla3 > ruta/archivo_respaldo.sql
+
+CALL mi_procedimiento2('valor_p2', 'valor_p3');
