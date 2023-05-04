@@ -1,0 +1,25 @@
+# Desplegar.yml
+
+name: Despliegue
+
+on: [push]
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    #paso:  Enviar repositorio a GitHUb
+    - uses: actions/checkout@master   
+    #paso: envio fuentes a ubuntu por scp
+    - name: Copiar el contenido del repositorio con scp 
+      uses: appleboy/scp-action@master
+      env:
+        HOST: ${{ secrets.HOST }}          # host
+        USERNAME: ${{ secrets.USERNAME }}  # usuario 
+        PORT: ${{ secrets.PORT }}          # puerto ssh
+        KEY: ${{ secrets.SSHKEY }}         # ssh key
+      with:
+        source: "/users/fmend/programs/node-react/node/database/*"           # ficheros origen para scp
+        target: "/home/ubuntu/app"    # dir destino para scp
+  
