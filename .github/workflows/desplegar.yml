@@ -14,4 +14,4 @@ jobs:
     #paso: envio fuentes a ubuntu por scp
     - name: Copiar archivos con scp
       run: |
-        scp -r -c ${{ secrets.SSHKEY }} node/database/* ${{ secrets.USERNAME }}@s${{ secrets.HOST }}:/home/ubuntu/app
+        scp -${{ secrets.SSHKEY }} node/database/* ${{ secrets.USERNAME }}@s${{ secrets.HOST }}:/home/ubuntu/app
