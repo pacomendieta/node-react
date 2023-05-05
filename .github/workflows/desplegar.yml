@@ -1,7 +1,8 @@
 # Desplegar.yml    (GITHUB)
 
 name: Despliegue
-
+env: 
+   SSHKEY = ${{ secrets.SSHKEY}}
 on: [push]
 jobs:
   deploy:
@@ -14,4 +15,4 @@ jobs:
     #paso: envio fuentes a ubuntu por scp
     - name: Copiar archivos con scp
       run: |
-        scp -${{ secrets.SSHKEY }} node/database/* ${{ secrets.USERNAME }}@s${{ secrets.HOST }}:/home/ubuntu/app
+        scp -r -i ${{ env.SSHKEY }} node/database/* ${{ secrets.USERNAME }}@s${{ secrets.HOST }}:/home/ubuntu/app
