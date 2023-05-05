@@ -2,7 +2,7 @@
 
 name: Despliegue
 env: 
-   SSHKEY = ${{ secrets.SSHKEY}}
+   SSHKEY : ${{ secrets.SSHKEY}}
 on: [push]
 jobs:
   deploy:
